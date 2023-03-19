@@ -1,7 +1,7 @@
-t#+Name: Elm In Action: Chapter 2 - Your first Elm application
+#+Name: Elm In Action: Chapter 2 - Your first Elm application
 #+AUTHOR: M.J.
 #+DESCRIPTIONk: emacs config
-#+PROPERTY: header-args :tangle ../src/PhotoGroove.elm
+#+PROPERTY:
 
 
 * Chapter 2 - starting to code the app
@@ -57,3 +57,8 @@ main =
 ** What is the elm runtime and main
 ** What is the Elm Architecture
 ** What is a model
+** Partial function application
+*** What is it
+*** How does it work 
+*** Tupled functions, what does it mean
+

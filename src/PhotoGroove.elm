@@ -9,12 +9,23 @@ view model =
     div
         [ Attributes.class "content" ]
         [ h1 [] [ text "Photo Groove" ]
-        , div [ Attributes.id "thumbnails" ] (List.map viewThumbnail model)
+        , div [ Attributes.id "thumbnails" ]
+            (List.map
+                (\photo -> viewThumbnail (model.selectedUrl == photo.url) photo)
+                model.photos
+            )
+        , img
+            [ Attributes.class "large"
+            , Attributes.src (urlPrefix ++ "large/" ++ model.selectedUrl)
+            ]
+            []
         ]
 
 
 type alias Model =
-    List ImageStub
+    { photos : List ImageStub
+    , selectedUrl : String
+    }
 
 
 type alias ImageStub =
@@ -23,20 +34,28 @@ type alias ImageStub =
 
 initialModel : Model
 initialModel =
-    [ { url = "1.jpeg" }
-    , { url = "1.jpeg" }
-    , { url = "1.jpeg" }
-    ]
+    { photos =
+        [ { url = "1.jpeg" }
+        , { url = "2.jpeg" }
+        , { url = "3.jpeg" }
+        ]
+    , selectedUrl = "1.jpeg"
+    }
 
 
 urlPrefix : String
 urlPrefix =
-    "http://elm-in-action-.com/"
+    "http://elm-in-action.com/"
 
 
-viewThumbnail : ImageStub -> Html msg
-viewThumbnail thumb =
-    img [ Attributes.src (urlPrefix ++ thumb.url) ] []
+viewThumbnail : Bool -> ImageStub -> Html msg
+viewThumbnail isSelected thumb =
+    img
+        [ Attributes.classList
+            [ ( "selected", isSelected ) ]
+        , Attributes.src (urlPrefix ++ thumb.url)
+        ]
+        []
 
 
 main : Html msg
