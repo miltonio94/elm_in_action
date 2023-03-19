@@ -1,0 +1,59 @@
+t#+Name: Elm In Action: Chapter 2 - Your first Elm application
+#+AUTHOR: M.J.
+#+DESCRIPTIONk: emacs config
+#+PROPERTY: header-args :tangle ../src/PhotoGroove.elm
+
+
+* Chapter 2 - starting to code the app
+
+
+#+BEGIN_SRC elm
+module PhotoGroove exposing (main)
+
+import Html exposing (div, h1, img, text)
+import Html.Attributes as Attributes
+#+END_SRC
+
+
+#+BEGIN_SRC elm
+view model =
+    div
+        [ Attributes.class "content" ]
+        [ h1 [] [ text "Photo Groove" ]
+        , img [ Attributes.src "http://elm-in-action.com/1.jpeg" ] []
+        , img [ Attributes.src "http://elm-in-action.com/2.jpeg" ] []
+        , img [ Attributes.src "http://elm-in-action.com/3.jpeg" ] []
+        ]
+#+END_SRC
+
+
+#+BEGIN_SRC elm
+  initialModel =
+    [ { url = "1.jpeg" }
+    , { url = "1.jpeg" }
+    , { url = "1.jpeg" }
+    ]
+#+END_SRC
+
+
+#+BEGIN_SRC elm
+main =
+    view initialModel
+
+#+END_SRC
+
+
+~elm make src/PhotoGroove.elm --output app.js~
+  
+
+
+
+* Write about the following :todo:
+** what is qualified style referring to?
+*** what are the upside of using a qualified style
+*** what are the downsides of using a qualified style
+*** what context to use qualified and unqualified style
+** What structure is the virtual DOM
+** What is the elm runtime and main
+** What is the Elm Architecture
+** What is a model
