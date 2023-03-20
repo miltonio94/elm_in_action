@@ -1,0 +1,25 @@
+#+Name: Elm In Action: Chapter 3 - Compiler as assistant
+#+AUTHOR: M.J.
+#+DESCRIPTIONk: emacs config
+#+PROPERTY:
+
+
+* Write notes on the following topics
+** Types and type annotation
+*** Function annotation
+*** Record annotation
+** List vs Array
+** Type variables
+** Type aliases
+** Case expression
+** Custom types
+** Maybe
+*** Nothing is a value
+*** Just is a function
+*** Capitalisation matter
+** Destructuring custom types
+** Custom type as a message
+** Default branch is plague like, to be avoide
+** Elm commands
+** The ~Browser.element~ 
+** Unit 
