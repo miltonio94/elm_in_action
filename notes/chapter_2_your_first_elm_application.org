@@ -5,54 +5,30 @@
 
 
 * Chapter 2 - starting to code the app
-
-
-#+BEGIN_SRC elm
-module PhotoGroove exposing (main)
-
-import Html exposing (div, h1, img, text)
-import Html.Attributes as Attributes
-#+END_SRC
-
-
-#+BEGIN_SRC elm
-view model =
-    div
-        [ Attributes.class "content" ]
-        [ h1 [] [ text "Photo Groove" ]
-        , img [ Attributes.src "http://elm-in-action.com/1.jpeg" ] []
-        , img [ Attributes.src "http://elm-in-action.com/2.jpeg" ] []
-        , img [ Attributes.src "http://elm-in-action.com/3.jpeg" ] []
-        ]
-#+END_SRC
-
-
-#+BEGIN_SRC elm
-  initialModel =
-    [ { url = "1.jpeg" }
-    , { url = "1.jpeg" }
-    , { url = "1.jpeg" }
-    ]
-#+END_SRC
-
-
-#+BEGIN_SRC elm
-main =
-    view initialModel
-
-#+END_SRC
-
-
-~elm make src/PhotoGroove.elm --output app.js~
-  
-
-
-
-* Write about the following :todo:
+* Write about the following                                            :todo:
 ** what is qualified style referring to?
-*** what are the upside of using a qualified style
-*** what are the downsides of using a qualified style
+There are two ways of importing in elm
+#+begin_src elm
+  -- we can put in the brackest the individual things we want or two dots to indicate all
+  import Html exposing (..)
+  import Html.Attributes
+#+end_src
+
+When we choose to not expose anything from a module import (the second line of the example code above)
+we are using a qualified style of importing
+When we expose something, that is called an unqualified style.
+
+The benefits of using the qualified style is that we don't "pollute" our scope.
+What do you I mean by that, well, when we import and expose a particular function from a module,
+we become unable to use that function's name in our scope.
+Another benefit is that there will be no "compiler confusion".
+When we import many modules, some of them may have functions with the same name,
+this causes a conflict, remember, names of definition must be unique in Elm, it supports no function overloading.
+
+The main negative of qualified imports is verbosity.
+Although much of this can be mitigated with import aliases and a good LSP.
 *** what context to use qualified and unqualified style
+
 ** What structure is the virtual DOM
 ** What is the elm runtime and main
 ** What is the Elm Architecture
@@ -60,5 +36,8 @@ main =
 ** Partial function application
 *** What is it
 *** How does it work 
+**** Currying
 *** Tupled functions, what does it mean
+** Messages
+
 
