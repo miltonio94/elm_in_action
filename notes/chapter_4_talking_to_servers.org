@@ -1,0 +1,23 @@
+#+Name: Elm In Action: Chapter 4 - Talking to servers
+#+AUTHOR: M.J.
+#+DESCRIPTIONk: emacs config
+#+PROPERTY:
+
+
+* Chapter 4 - Talking to servers
+** TODO Representing loaded data
+** TODO Random.uniform
+** TODO The pipe
+** TODO No side effects
+** TODO Result and Maybe
+*** TODO What's a Maybe
+*** TODO What's a Result
+** as pattern
+** type alias 
+*** Using type alias as a function
+** Concise pattern matching
+** Running command on init
+** Decoding JSON
+** ~Http.Error~
+*** ~Http.request~
+
