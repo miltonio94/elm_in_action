@@ -5,8 +5,9 @@
 
 
 * Chapter 2 - starting to code the app
-* Write about the following                                            :todo:
-** what is qualified style referring to?
+* TODO Write about the following                                            
+** DONE Qualified style
+CLOSED: [2023-03-20 Mon 18:25]
 There are two ways of importing in elm
 #+begin_src elm
   -- we can put in the brackest the individual things we want or two dots to indicate all
@@ -27,17 +28,44 @@ this causes a conflict, remember, names of definition must be unique in Elm, it 
 
 The main negative of qualified imports is verbosity.
 Although much of this can be mitigated with import aliases and a good LSP.
-*** what context to use qualified and unqualified style
 
-** What structure is the virtual DOM
-** What is the elm runtime and main
-** What is the Elm Architecture
-** What is a model
-** Partial function application
-*** What is it
-*** How does it work 
-**** Currying
-*** Tupled functions, what does it mean
-** Messages
+It is usually preferable to use a qualified style of imports, however,
+like every rule this one too has an exception.
+When we are sure that we wont have any clashes with our names and we are repeatedly using a particular function,
+it is generally accepted to expose selectively and use an unqualified approach.
+
+** DONE What structure is the virtual DOM
+CLOSED: [2023-03-22 Wed 09:00]
+The virtual DOM is a a tree structure. Nodes that have child nodes, much like the actual DOM.
+This makes sense as the virtual DOM is merely a representation of the DOM (probably a redundant statement).
+Elm will keep the virtual DOM in it's runtime (check bellow) and diffs it against the actual DOM.
+This is part of the Elm runtime, so I will speak more about it in the section bellow.
+If it finds a discrepancy it changes only where necessary for an efficient re-render cycle
+
+** DONE What is the elm runtime and main
+CLOSED: [2023-03-22 Wed 09:10]
+The elm runtime is all the extra bits and bobs that gets compiled to our JavaScript code at the end.
+You can think of it as an engine that takes care of diffing the DOM, taking care
+of interactions between Elm code and JavaScript Code, managing side effects like HTTP Request and getting random numbers, etc, etc.
+The runtime is also in charg
+
+Every Elm program needs at least one function, the ~main~ function. ~main~ is special in Elm, like in C, it is the entry point of our program.
+
+** TODO What is the Elm Architecture
+The elm architecture is a MVU (Model View Update) model.
+It states that we should have a model to represent the state of our app,
+a View to turn a state into HTML and an Update to ensure that our state is managed via messages.
+
+Elm takes a data first approach to things. Our model is an extremely important part of our application,
+as the whole app can be thought of as a funnel, it takes data in one format (the model), it changes it where needed and transforms it into an HTML output.
+
+
+** TODO What is a model
+** TODO Partial function application
+*** TODO What is it
+*** TODO How does it work 
+**** TODO Currying
+*** TODO Tupled functions, what does it mean
+** TODO Messages
 
 
