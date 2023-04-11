@@ -1,0 +1,14 @@
+#+Name: Elm In Action: Chapter 4 - Talking to servers
+#+AUTHOR: M.J.
+#+DESCRIPTIONk: emacs config
+#+PROPERTY:
+
+
+* Chapter 4 - Talking to servers
+** Creating a custom element
+*** Extending ~Htmlelement~
+*** Defining the element
+*** Defining a custom element in Elm
+
+** 
+

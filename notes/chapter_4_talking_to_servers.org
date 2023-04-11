@@ -12,12 +12,12 @@
 ** TODO Result and Maybe
 *** TODO What's a Maybe
 *** TODO What's a Result
-** as pattern
-** type alias 
-*** Using type alias as a function
-** Concise pattern matching
-** Running command on init
-** Decoding JSON
-** ~Http.Error~
-*** ~Http.request~
+** TODO as pattern
+** TODO type alias 
+*** TODO Using type alias as a function
+** TODO Concise pattern matching
+** TODO Running command on init
+** TODO Decoding JSON
+** TODO ~Http.Error~
+*** TODO ~Http.request~
 

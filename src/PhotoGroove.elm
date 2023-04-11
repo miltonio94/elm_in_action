@@ -2,12 +2,13 @@ module PhotoGroove exposing (main)
 
 import Array exposing (Array)
 import Browser
-import Html exposing (Html, div, h1, img, text)
+import Html exposing (Attribute, Html, div, h1, img, text)
 import Html.Attributes as Attributes
 import Html.Events as Events
 import Http
-import Json.Decode as Json
-import Json.Decode.Pipeline as JsonPipeline
+import Json.Decode as Decode
+import Json.Decode.Pipeline as DecodePipeline
+import Json.Encode as Encode
 import Random
 
 
@@ -51,12 +52,12 @@ initialModel =
     }
 
 
-photoDecoder : Json.Decoder Photo
+photoDecoder : Decode.Decoder Photo
 photoDecoder =
-    Json.succeed Photo
-        |> JsonPipeline.required "url" Json.string
-        |> JsonPipeline.required "size" Json.int
-        |> JsonPipeline.optional "title" Json.string "(untitled)"
+    Decode.succeed Photo
+        |> DecodePipeline.required "url" Decode.string
+        |> DecodePipeline.required "size" Decode.int
+        |> DecodePipeline.optional "title" Decode.string "(untitled)"
 
 
 buildPhoto : String -> Int -> String -> Photo
@@ -107,6 +108,20 @@ viewSizeChooser size =
         ]
 
 
+viewFilter : String -> Int -> Html Msg
+viewFilter name mangnitude =
+    Html.div
+        [ Attributes.class "filter-slider" ]
+        [ Html.label [] [ Html.text name ]
+        , rangeSlider
+            [ Attributes.max "11"
+            , Attributes.property "val" (Encode.int mangnitude)
+            ]
+            []
+        , Html.label [] [ text (String.fromInt mangnitude) ]
+        ]
+
+
 view : Model -> Html Msg
 view model =
     div
@@ -127,6 +142,12 @@ photoView : List Photo -> String -> ThumbnailSize -> List (Html Msg)
 photoView photos selected chosenSize =
     [ h1 [] [ text "Photo Groove" ]
     , Html.button [ Events.onClick SupriseMotherFucker ] [ text "Suprise me" ]
+    , div
+        [ Attributes.class "filters" ]
+        [ viewFilter "Hue" 0
+        , viewFilter "Ripple" 0
+        , viewFilter "Noise" 0
+        ]
     , Html.h3 [] [ text "Thumbnail size:" ]
     , div [ Attributes.id "choose-size" ]
         (List.map viewSizeChooser [ Small, Medium, Large ])
@@ -176,7 +197,7 @@ initialCommand : Cmd Msg
 initialCommand =
     Http.get
         { url = "http://elm-in-action.com/photos/list.json"
-        , expect = Http.expectJson GotPhotos (Json.list photoDecoder)
+        , expect = Http.expectJson GotPhotos (Decode.list photoDecoder)
         }
 
 
@@ -232,6 +253,11 @@ update msg model =
               }
             , Cmd.none
             )
+
+
+rangeSlider : List (Attribute msg) -> List (Html msg) -> Html msg
+rangeSlider attributes children =
+    Html.node "range-slider" attributes children
 
 
 main : Program () Model Msg
